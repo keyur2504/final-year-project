@@ -36,7 +36,7 @@ const Hospitals = () => {
         <tbody>
           {data?.map((record) => (
             <tr key={record._id}>
-              <td>{record.hospitalName + " (ORG)"}</td>
+              <td>{record.hospitalName}</td>
               <td>{record.email}</td>
               <td>{record.phone}</td>
               <td>{record.address}</td>

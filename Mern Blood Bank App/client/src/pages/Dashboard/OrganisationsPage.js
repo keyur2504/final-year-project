@@ -1,30 +1,29 @@
 import React, { useEffect, useState } from "react";
-import Layout from "../../components/Shared/Layout/Layout";
+
 import moment from "moment";
 import { useSelector } from "react-redux";
 import API from "../../services/api";
+import Layout from "../../components/Shared/Layout/Layout";
 
-const OrganisationsPage = () => {
-  //Get current user
+const OrganisationPage = () => {
+  // get current user
   const { user } = useSelector((state) => state.auth);
   const [data, setData] = useState([]);
-  //Find Donar Records
-
-  const getDonars = async () => {
+  //find org records
+  const getOrg = async () => {
     try {
       if (user?.role === "donar") {
         const { data } = await API.get("/inventory/get-organisation");
-        // console.log(data);
+        //   console.log(data);
         if (data?.success) {
           setData(data?.organisations);
         }
       }
-
       if (user?.role === "hospital") {
         const { data } = await API.get(
           "/inventory/get-organisation-for-hospital"
         );
-        // console.log(data);
+        //   console.log(data);
         if (data?.success) {
           setData(data?.organisations);
         }
@@ -33,12 +32,14 @@ const OrganisationsPage = () => {
       console.log(error);
     }
   };
+
   useEffect(() => {
-    getDonars();
+    getOrg();
   }, [user]);
+
   return (
     <Layout>
-      <table className="table text-center table-hover">
+      <table className="table ">
         <thead>
           <tr>
             <th scope="col">Name</th>
@@ -51,7 +52,7 @@ const OrganisationsPage = () => {
         <tbody>
           {data?.map((record) => (
             <tr key={record._id}>
-              <td>{record.organisationName + " (ORG)"}</td>
+              <td>{record.organisationName}</td>
               <td>{record.email}</td>
               <td>{record.phone}</td>
               <td>{record.address}</td>
@@ -64,4 +65,4 @@ const OrganisationsPage = () => {
   );
 };
 
-export default OrganisationsPage;
+export default OrganisationPage;

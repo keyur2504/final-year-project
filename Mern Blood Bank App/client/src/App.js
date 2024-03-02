@@ -8,7 +8,15 @@ import ProtectedRoute from "./components/Routes/ProtectedRoute";
 import PublicRoute from "./components/Routes/PublicRoute";
 import Donar from "./pages/Dashboard/Donar";
 import Hospitals from "./pages/Dashboard/Hospitals";
-import OrganisationsPage from "./pages/Dashboard/OrganisationsPage";
+// import OrganisationsPage from "./pages/Dashboard/OrganisationsPage";
+import Consumer from "./pages/Dashboard/Consumer";
+import Donation from "./pages/Dashboard/Donation";
+import OrganisationPage from "./pages/Dashboard/OrganisationsPage";
+import Analytics from "./pages/Dashboard/Analytics";
+import HospitalList from "./pages/Admin/HospitalList";
+import OrgList from "./pages/Admin/OrgList";
+import DonarList from "./pages/Admin/DonarList";
+import AdminHome from "./pages/Admin/AdminHome";
 
 function App() {
   return (
@@ -32,6 +40,62 @@ function App() {
           }
         />
         <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminHome />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/hospital-list"
+          element={
+            <ProtectedRoute>
+              <HospitalList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/org-list"
+          element={
+            <ProtectedRoute>
+              <OrgList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/donar-list"
+          element={
+            <ProtectedRoute>
+              <DonarList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/analytics"
+          element={
+            <ProtectedRoute>
+              <Analytics />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/consumer"
+          element={
+            <ProtectedRoute>
+              <Consumer />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/donation"
+          element={
+            <ProtectedRoute>
+              <Donation />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/hospital"
           element={
             <ProtectedRoute>
@@ -43,7 +107,7 @@ function App() {
           path="/organisation"
           element={
             <ProtectedRoute>
-              <OrganisationsPage />
+              <OrganisationPage />
             </ProtectedRoute>
           }
         />
